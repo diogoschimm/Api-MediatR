@@ -24,7 +24,7 @@ namespace ApiSample.Core.Handlers.CommandHandlers
 
         public async Task<bool> Handle(CriarClienteCommand request, CancellationToken cancellationToken)
         {
-            if (request.Validar()) return false;
+            if (!request.Validar()) return false;
 
             var cliente = new Cliente(request.NomeCliente);
 
@@ -35,7 +35,7 @@ namespace ApiSample.Core.Handlers.CommandHandlers
 
         public async Task<bool> Handle(AlterarClienteCommand request, CancellationToken cancellationToken)
         {
-            if (request.Validar()) return false;
+            if (!request.Validar()) return false;
 
             var cliente = this._clienteQuery.Get(request.IdCliente);
             cliente.MudarNome(request.NomeCliente);
@@ -47,7 +47,7 @@ namespace ApiSample.Core.Handlers.CommandHandlers
 
         public async Task<bool> Handle(ExcluirClienteCommand request, CancellationToken cancellationToken)
         {
-            if (request.Validar()) return false;
+            if (!request.Validar()) return false;
 
             var cliente = this._clienteQuery.Get(request.IdCliente);
             await this._clienteRepository.Delete(cliente);
