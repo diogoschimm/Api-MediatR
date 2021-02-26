@@ -1,5 +1,6 @@
 ﻿using ApiSample.Core.Handlers.CommandHandlers;
 using ApiSample.Core.Handlers.Commands.Cadastros;
+using FluentAssertions;
 using MediatR;
 using Moq;
 using Moq.AutoMock;
@@ -32,7 +33,7 @@ namespace ApiSample.Core.Tests.Handlers.CommandHandlers
             var result = await mediator.Handle(command, CancellationToken.None);
 
             // Assert
-            Assert.True(result);
+            result.Should().BeTrue();
         }
     }
 }
